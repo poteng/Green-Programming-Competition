@@ -24,11 +24,9 @@ You can find the information at https://greensoft.cs.txstate.edu/
 
 The optimization related to algorithm design, parallel programing, and knowledge about ideal size of hash table.
 
-My baseline version (baseline.c) takes around 57 joules to run, while my optimized version (optimized.c) takes about 30 joules, which is also the lowest amoung all participants.
+My [baseline](./baseline.c) version takes around 57 joules to run, while my [optimized](optimized.c) version  takes about 30 joules, which is also the lowest amoung all participants.
 
 
 ## More details:
 
-You can check the detailed report by clicking [Green Competition Report.docx](./Green Competition Report.docx)
-
-[Contribution guidelines for this project](./CONTRIBUTING.md)
+You can check the detailed report by clicking [Green Competition Report.docx](Green Competition Report.docx)
