@@ -6,7 +6,7 @@ This project tries to achieve extremly low energy consumption and good performan
 
 ## Problem:
 
-Given an article and an integer n, the most nth frequency words need to be found out and listed.
+Given an large article and an integer n, the most n-th frequency words need to be found out and listed. If two words have the same frequency, then the word is considered as more frequent if it comes before another in the dictionary. 
 
 
 ## GreenCode
