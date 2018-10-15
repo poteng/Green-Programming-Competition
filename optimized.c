@@ -1,15 +1,10 @@
 /*
  ============================================================================
- Name        : GreenProjectC.c
+ Name        : optimized.c
  Author      : Po-Teng Tseng
- Version     :
- Copyright   : Your copyright notice
- Description : Hello World in C, Ansi-style
+ Description : The optimization related to algorithm design, parallel programing, and knowledge about ideal size of hash table.
  ============================================================================
  */
-
-//cscan is better than cin
-//
 
 
 
@@ -36,9 +31,7 @@ struct node
 };
 
 
-
-
-//http://www.cse.yorku.ca/~oz/hash.html
+//This good hash function was found on http://www.cse.yorku.ca/~oz/hash.html
 unsigned long hash(unsigned char *str)
 {
 	unsigned long hash = 5381;
@@ -51,17 +44,11 @@ unsigned long hash(unsigned char *str)
 }
 
 
-
 int cmpfunc(const void * a, const void * b){
-	//return (*(struct node*)a->freq - *(struct node*)b->freq);
-
-
 	struct node *orderA = (struct node *)a;
 	struct node *orderB = (struct node *)b;
 	return ( orderB->freq - orderA->freq);
 }
-
-
 
 
 int main(void) {
@@ -84,9 +71,9 @@ int main(void) {
 	int k;
 	int l;
 
-
-	const int size_pool = 60000;
-	//struct node table[40][40000];
+	const int size_pool = 60000;	//60,000 is the optimized size for the hash table for this question
+	
+	//it's struct node table[40][40000];
 	struct node** table;
 	table = malloc(sizeof(struct node*) * 40);
 	for (i = 0; i < 40; i++){
@@ -94,7 +81,7 @@ int main(void) {
 	}
 
 
-
+	
 
 	FILE *file1;
 	file1 = fopen( "test3.in", "r");
@@ -114,8 +101,6 @@ int main(void) {
 			table[l][i].freq = 0;
 		}
 
-
-
 		fscanf(file1, "%s", buff);
 		num_line = strtol (buff, NULL, 10);
 		fscanf(file1, "%s", buff);
@@ -129,9 +114,6 @@ int main(void) {
 
 		//read and assign words to array
 		for (j = 0; j < num_line; j++){
-		//while (fscanf(file1, "%s%c", buff, &aaa) >= 0 ){
-			//fscanf(file1, "%s", buff);
-
 			pt_buff_line = fgets(buff_line, 1200, file1);
 			while (sscanf(pt_buff_line, "%s %n", buff, &num_parsed) == 1)
 			{
@@ -139,10 +121,7 @@ int main(void) {
 				index = hash(buff)%size_pool;
 				k = 1;
 				while (strcmp(table[l][index].name, "") != 0 && strcmp(table[l][index].name, buff) != 0){
-					//printf("Conflict occurred at %d. ", index);
-					//index = k * (hash(buff) + k)%size_pool;
 					index = (index + k + k*k)%size_pool;
-					//printf("New index : %d\n", index);
 					if (k >= size_pool - 100) printf("%s New index : %d %s\n", buff, index, table[l][index].name);
 					k++;
 				}
@@ -156,7 +135,6 @@ int main(void) {
 	#pragma omp parallel for num_threads(5)
 	for (l = 0; l < num_test; l++){
 		qsort(table[l], size_pool, sizeof(struct node), cmpfunc);
-		//quick_select(table[l], 0, size_pool - 1, num_start_a[l], num_end_a[l]);
 	}
 
 	for (l = 0; l < num_test; l++){
@@ -169,7 +147,6 @@ int main(void) {
 		while (table[l][down].freq == table[l][down + 1].freq){
 			down++;
 		}
-		//printf("up %d   down %d\n", up, down);
 		int s_down = up;
 
 		//up is upper bound, s_down is lower bound for each chunk
@@ -177,13 +154,10 @@ int main(void) {
 			while (table[l][s_down].freq == table[l][s_down + 1].freq){
 				s_down++;
 			}
-//			printf("up %d   s_down %d\n", up, s_down);
 			for (i = up; i <= s_down; i++){
 				node_tmp = table[l][i];
 				j = i - 1;
 				while (j >= 0 && j >= up && strcmp(node_tmp.name, table[l][j].name) < 0){
-
-	//				printf("i = %d j = %d  %s < %s \n", i, j, node_tmp.name, table[j].name);
 					table[l][j + 1] = table[l][j];
 					j--;
 				}
@@ -202,10 +176,8 @@ int main(void) {
 				printf("%s:%d\n", table[l][i].name, table[l][i].freq);
 			}
 		}
-
 	}
-
-
+	
 	fclose(file1);
 	free(table);
 
