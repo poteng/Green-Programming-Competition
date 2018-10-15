@@ -6,7 +6,9 @@ This project tries to achieve extremly low energy consumption and good performan
 
 ## Problem:
 
-Given an large article and an integer n, the most n-th frequency words need to be found out and listed. If two words have the same frequency, then the word is considered as more frequent if it comes before another in the dictionary. 
+Given an [large article](test.in) and an integer n, the most n-th frequency words need to be found out and listed. If two words have the same frequency, then the word is considered as more frequent if it comes before another in the dictionary. 
+
+The output should be like [this](test.out.txt).
 
 
 ## GreenCode
