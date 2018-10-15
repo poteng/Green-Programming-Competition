@@ -29,4 +29,6 @@ My baseline version (baseline.c) takes around 57 joules to run, while my optimiz
 
 ## More details:
 
-You can check the detailed report by clicking Green Competition Report.docx
+You can check the detailed report by clicking [Green Competition Report.docx](./Green Competition Report.docx)
+
+[Contribution guidelines for this project](./CONTRIBUTING.md)
