@@ -29,4 +29,4 @@ My [baseline](./baseline.c) version takes around 57 joules to run, while my [opt
 
 ## More details:
 
-You can check the detailed report by clicking [Green Competition Report.docx](Green Competition Report.docx)
+You can check the detailed report here: [Green Competition Report](GreenCompetitionReport.pdf)
