@@ -84,7 +84,7 @@ int main(void) {
 	
 
 	FILE *file1;
-	file1 = fopen( "test3.in", "r");
+	file1 = fopen( "test.in", "r");
 	if (file1 == NULL)
 	{
 		printf("\nFile open failed.\n");
